@@ -18,4 +18,18 @@ public class OnlineShopping_Tests extends BaseTest {
         Assert.assertEquals(result, "Account");
         System.out.println(result);
     }
+    @Test
+    public void Test_MenFashion_SortByPrice() {
+        // Arrange
+        driver.get("https://askomdch.com/product-category/men/");
+        MenFashion_Page menFashion_page = new MenFashion_Page(driver);
+        // Act
+        menFashion_page.sortByPrice();
+        var firsItem = driver.findElements(By.cssSelector("span.price:nth-of-type(2)")).get(0).getText();
+        var lastItem = driver.findElements(By.cssSelector("span.price:nth-of-type(2)")).get(menFashion_page.itemPrice.size()-1).getText();
+        // Assert
+        Assert.assertEquals(firsItem,"$20.00");
+        Assert.assertEquals(lastItem,"$145.00");
+
+    }
 }
