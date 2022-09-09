@@ -30,6 +30,16 @@ public class OnlineShopping_Tests extends BaseTest {
         // Assert
         Assert.assertEquals(firsItem,"$20.00");
         Assert.assertEquals(lastItem,"$145.00");
-
+    }
+     @Test
+    public void Test_AddToCart_OnlyJeans() {
+        // Arrange
+        driver.get("https://askomdch.com/product-category/men/");
+        MenFashion_Page menFashion_page = new MenFashion_Page(driver);
+        // Act
+        menFashion_page.addToCart_Jeans();
+        var result = driver.findElement(By.cssSelector("span.count")).getText();
+        // Assert
+        Assert.assertEquals(result,Integer.toString(menFashion_page.numberJeans));
     }
 }
