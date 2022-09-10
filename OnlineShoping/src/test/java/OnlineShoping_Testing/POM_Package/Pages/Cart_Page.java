@@ -40,7 +40,7 @@ public class Cart_Page extends BasePage {
         select2.selectByValue("BG-02");
         zipCode.sendKeys("8000");
         email.sendKeys("someRandomEmail@abv.bg");
-        try {                           // hard coded wait for now explicit wait cant help me!
+        try {                           // hard coded wait for now explicit wait can't help me!
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
