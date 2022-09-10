@@ -42,4 +42,19 @@ public class OnlineShopping_Tests extends BaseTest {
         // Assert
         Assert.assertEquals(result,Integer.toString(menFashion_page.numberJeans));
     }
+    @Test
+    public void Test_AddToCart_AndProceedToCheckout() {
+        // Arrange
+        driver.get("https://askomdch.com/product-category/men/");
+        MenFashion_Page menFashion_page = new MenFashion_Page(driver);
+        // Act
+        menFashion_page.addToCart_Jeans();
+        driver.findElement(By.xpath("//*[@id=\"post-1220\"]/div/div/div/div/div[2]/div/div/a")).click();
+        Cart_Page cart_page = new Cart_Page(driver);
+        cart_page.proceedToCheckOut();
+        var result = driver.findElement(By.xpath("//*[@id=\"post-1221\"]/div/div/div/div/div/p[1]")).getText();
+        // Assert
+        Assert.assertEquals(result,"Thank you. Your order has been received.");
+        Assert.assertTrue(driver.getCurrentUrl().contains("order-received"));
+    }
 }
